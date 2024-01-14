@@ -25,7 +25,7 @@
       },
       {
         "day-type": "working",
-        "departs-from": "innopolis",
+        "departs-from": "inno",
         "departs-at": [
           "6:00",
           "7:30",
@@ -67,7 +67,7 @@
       },
       {
         "day-type": "day-off",
-        "departs-from": "innopolis",
+        "departs-from": "inno",
         "departs-at": [
           "8:00",
           "9:00",
