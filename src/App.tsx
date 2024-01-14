@@ -1,32 +1,27 @@
 import {useState} from 'react'
 import './App.css'
+import Settings from "./pages/Settings.tsx";
 
 function App() {
   const [screen, setScreen] = useState<'from-inno' | 'from-kazan' | 'settings'>('from-inno')
 
   return (
-    <main className="flex flex-col gap-4">
-      <section>
-        {screen === 'from-inno' &&
-          <div>
-            from-inno
-          </div>
-        }
-        {screen === 'from-kazan' &&
-          <div>
-            from-kazan
-          </div>
-        }
-        {screen === 'settings' &&
-          <div>
-            settings
-          </div>
-        }
-      </section>
-      <div className="menu menu-horizontal rounded-box flex gap-2">
-        <button className='btn' onClick={() => setScreen('from-inno')}>Из Инно</button>
-        <button className='btn' onClick={() => setScreen('from-kazan')}>Из Казани</button>
-        <button className='btn' onClick={() => setScreen('settings')}>
+    <main className="flex flex-col gap-8">
+      {screen === 'from-inno' &&
+        <div>
+          from-inno
+        </div>
+      }
+      {screen === 'from-kazan' &&
+        <div>
+          from-kazan
+        </div>
+      }
+      {screen === 'settings' && <Settings/>}
+      <div className="join justify-center">
+        <button className='btn join-item' onClick={() => setScreen('from-inno')}>Из Инно</button>
+        <button className='btn join-item' onClick={() => setScreen('from-kazan')}>Из Казани</button>
+        <button className='btn join-item' onClick={() => setScreen('settings')}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round"
