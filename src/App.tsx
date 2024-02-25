@@ -7,7 +7,7 @@ function App() {
   const [screen, setScreen] = useState<'from-inno' | 'from-kazan' | 'settings'>('from-inno')
 
   return (
-    <main className="flex flex-col gap-8">
+    <main className="flex flex-col gap-8 basis-full">
       {screen === 'from-inno' && <Timetable departureFrom='inno'/>}
       {screen === 'from-kazan' && <Timetable departureFrom='kazan'/>}
       {screen === 'settings' && <Settings/>}
