@@ -17,9 +17,8 @@ const getCurrentTime = () =>
   new Intl.DateTimeFormat("ru-RU", {hour: "numeric", minute: "numeric"}).format(new Date())
 
 const compareByMinutes = (a: TimeWithMinutes, b: TimeWithMinutes) => {
-  const aDate = new Date(`1.1.1 ${a.minutes}`)
-  const bDate = new Date(`1.1.1 ${b.minutes}`)
-
+  const aDate = new Date(1, 1, 1, Number(a.minutes.split(':')[0]), Number(a.minutes.split(':')[1]))
+  const bDate = new Date(1, 1, 1, Number(b.minutes.split(':')[0]), Number(b.minutes.split(':')[1]))
   return aDate.getTime() - bDate.getTime()
 }
 
@@ -37,7 +36,7 @@ const Timetable = ({departureFrom}: Props) => {
     times = [...timetableDeparts.map(x => ({minutes: x})), {
       minutes: getCurrentTime(),
       isNow: true
-    }].sort(compareByMinutes).filter((time: TimeWithMinutes) => {
+    }].filter((time: TimeWithMinutes) => {
       if (areRelevantFiltered || time.isNow) {
         return true
       }
@@ -52,10 +51,14 @@ const Timetable = ({departureFrom}: Props) => {
     })
   }
 
+  const sortedTimes = [...times.sort(compareByMinutes)]
+
+  console.log('sortedTimes', sortedTimes)
+
   return (
     <section className='flex flex-col gap-2 items-center'>
       <ul>
-        {times.map(time => <li
+        {sortedTimes.map(time => <li
           key={time.isNow ? 'now' : time.minutes}>{time.isNow ? 'Вы находитесь здесь' : time.minutes}</li>)}
       </ul>
       <fieldset className='flex gap-2'>
